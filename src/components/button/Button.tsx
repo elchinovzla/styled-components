@@ -1,4 +1,6 @@
-import * as React from 'react';
+import { Button as MuiButton } from '@mui/material';
+import React from 'react';
+
 type ButtonStyle = {
   [property: string]: string;
 };
@@ -7,15 +9,17 @@ export interface ButtonProps {
   style: ButtonStyle;
   onClick: () => void;
 }
-const Button: React.FunctionComponent<ButtonProps> = ({
-  label,
-  style,
-  onClick,
-}) => {
+const Button: React.FC<ButtonProps> = ({ label, style, onClick }) => {
   return (
-    <button style={style} onClick={onClick}>
+    <MuiButton
+      style={{ color: 'red', width: '200px', height: '300px', ...style }}
+      onClick={onClick}
+      variant="contained"
+      color="primary"
+      size="small"
+    >
       {label}
-    </button>
+    </MuiButton>
   );
 };
 export default Button;
