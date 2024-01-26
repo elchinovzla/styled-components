@@ -1,25 +1,52 @@
-import { Button as MuiButton } from '@mui/material';
+import { ButtonProps as MuiButtonProps } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
+import StyledButton from './StyledButton';
 
 type ButtonStyle = {
   [property: string]: string;
 };
-export interface ButtonProps {
+
+export type ButtonType = 'primary' | 'secondary';
+export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
   label: string;
-  style: ButtonStyle;
-  onClick: () => void;
+  style?: ButtonStyle;
+  type: ButtonType;
+  isLoading?: boolean;
 }
-const Button: React.FC<ButtonProps> = ({ label, style, onClick }) => {
+
+const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
+  primary: {
+    variant: 'contained',
+    size: 'large',
+    color: 'primary',
+  },
+  secondary: {
+    variant: 'contained',
+    size: 'large',
+    color: 'secondary',
+  },
+};
+
+const Button: React.FC<ButtonProps> = ({
+  label,
+  style,
+  type,
+  isLoading,
+  disabled,
+  ...rest
+}) => {
+  const buttonProps = buttonPropsMap[type];
   return (
-    <MuiButton
-      style={{ color: 'red', width: '200px', height: '300px', ...style }}
-      onClick={onClick}
-      variant="contained"
-      color="primary"
-      size="small"
+    <StyledButton
+      style={style}
+      disabled={isLoading || disabled}
+      {...buttonProps}
+      {...rest}
     >
-      {label}
-    </MuiButton>
+      {isLoading ? <CircularProgress color="inherit" /> : label}
+    </StyledButton>
   );
 };
+
 export default Button;
