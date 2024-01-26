@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js",
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "publish": "npm version patch && npm run build && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
