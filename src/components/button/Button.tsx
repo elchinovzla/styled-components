@@ -1,16 +1,13 @@
 import { ButtonProps as MuiButtonProps } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
+import { Style } from '../common/Type';
 import StyledButton from './StyledButton';
-
-type ButtonStyle = {
-  [property: string]: string;
-};
 
 export type ButtonType = 'primary' | 'secondary';
 export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
   label: string;
-  style?: ButtonStyle;
+  style?: Style;
   type: ButtonType;
   isLoading?: boolean;
 }
@@ -22,7 +19,7 @@ const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
     color: 'primary',
   },
   secondary: {
-    variant: 'contained',
+    variant: 'outlined',
     size: 'large',
     color: 'secondary',
   },
