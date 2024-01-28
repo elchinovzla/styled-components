@@ -10,6 +10,5 @@ export interface InputProps
     'variant'
   > {
   label: string;
-  isRequired?: boolean;
   variant?: 'filled' | 'outlined' | 'standard';
 }

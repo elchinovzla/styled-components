@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PasswordInput from '../../components/input/PasswordInput';
+import CurrencyInput from '../../components/input/CurrencyInput';
 
 const meta = {
   title: 'Example/Input',
-  component: PasswordInput,
+  component: CurrencyInput,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -13,15 +13,15 @@ const meta = {
     error: { control: 'boolean' },
     helperText: { control: 'text' },
     disabled: { control: 'boolean' },
-    isRequired: { control: 'boolean' },
+    required: { control: 'boolean' },
   },
-} satisfies Meta<typeof PasswordInput>;
+} satisfies Meta<typeof CurrencyInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Password: Story = {
+export const Currency: Story = {
   args: {
-    label: 'Password',
+    label: 'Currency',
   },
 };

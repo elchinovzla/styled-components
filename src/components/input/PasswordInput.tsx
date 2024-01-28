@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import React, { useState } from 'react';
 import { InputProps } from './CommonType';
-import StyledPasswordInput from './StyledInput';
+import StyledInput from './StyledInput';
 
 const PasswordInput: React.FC<InputProps> = ({
   label,
@@ -25,8 +25,7 @@ const PasswordInput: React.FC<InputProps> = ({
   };
 
   return (
-    <StyledPasswordInput
-      style={{ color: 'red' }}
+    <StyledInput
       error={error ?? false}
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
