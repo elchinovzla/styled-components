@@ -27,6 +27,7 @@ export default {
     commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
+      exclude: ['src/stories/**/*'],
     }),
     postcss({
       extensions: ['.css'],
