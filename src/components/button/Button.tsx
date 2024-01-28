@@ -6,12 +6,11 @@ import StyledButton from './StyledButton';
 
 export type ButtonType = 'primary' | 'secondary';
 
-export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
+export interface ButtonProps extends MuiButtonProps {
   label: string;
   style?: Style;
   styleType?: ButtonType;
   isLoading?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
@@ -33,13 +32,13 @@ const Button: React.FC<ButtonProps> = ({
   styleType = 'primary',
   isLoading,
   disabled,
-  onClick,
+  // onClick,
   ...rest
 }) => {
   const buttonProps = buttonPropsMap[styleType];
   return (
     <StyledButton
-      onClick={onClick}
+      // onClick={onClick}
       style={style}
       disabled={isLoading || disabled}
       {...buttonProps}
