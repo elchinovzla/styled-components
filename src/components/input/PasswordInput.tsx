@@ -1,4 +1,3 @@
-import ClearIcon from '@mui/icons-material/Clear';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -6,6 +5,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import React, { useState } from 'react';
 import { InputProps } from './CommonType';
 import StyledInput from './StyledInput';
+import withClearButton from './withClearButton';
 
 const PasswordInput: React.FC<InputProps> = ({
   label,
@@ -14,7 +14,7 @@ const PasswordInput: React.FC<InputProps> = ({
   ...rest
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState('');
+  const { InputProps, ...restProps } = rest;
 
   const handleClickShowPassword = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -26,13 +26,20 @@ const PasswordInput: React.FC<InputProps> = ({
     event.preventDefault();
   };
 
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
-  const handleClear = () => {
-    setValue('');
-  };
+  const endAdornment = [
+    ...(Array.isArray(InputProps?.endAdornment)
+      ? InputProps?.endAdornment
+      : [InputProps?.endAdornment]),
+    <InputAdornment position="end" key="visibility">
+      <IconButton
+        aria-label="toggle password visibility"
+        onClick={handleClickShowPassword}
+        onMouseDown={handleMouseDownPassword}
+      >
+        {showPassword ? <Visibility /> : <VisibilityOff />}
+      </IconButton>
+    </InputAdornment>,
+  ];
 
   return (
     <StyledInput
@@ -40,29 +47,13 @@ const PasswordInput: React.FC<InputProps> = ({
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
       label={label}
-      value={value}
-      onChange={handleOnChange}
       InputProps={{
-        endAdornment: [
-          <InputAdornment position="end">
-            <IconButton aria-label="clear input" onClick={handleClear}>
-              {value && <ClearIcon fontSize="small" />}
-            </IconButton>
-          </InputAdornment>,
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {showPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>,
-        ],
+        ...InputProps,
+        endAdornment,
       }}
-      {...rest}
+      {...restProps}
     />
   );
 };
 
-export default PasswordInput;
+export default withClearButton(PasswordInput);

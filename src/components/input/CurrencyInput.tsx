@@ -1,11 +1,11 @@
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import React, { useState } from 'react';
+import React from 'react';
 import { NumericFormat, NumericFormatProps } from 'react-number-format';
 import { InputProps } from './CommonType';
 import StyledInput from './StyledInput';
+import withClearButton from './withClearButton';
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -41,15 +41,7 @@ const CurrencyInput: React.FC<InputProps> = ({
   helperText,
   ...rest
 }) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleClear = () => {
-    setInputValue('');
-  };
+  const { InputProps, ...restProps } = rest;
 
   return (
     <StyledInput
@@ -58,8 +50,6 @@ const CurrencyInput: React.FC<InputProps> = ({
       type="text"
       inputMode="numeric"
       label={label}
-      value={inputValue}
-      onChange={handleInputChange}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
@@ -68,18 +58,12 @@ const CurrencyInput: React.FC<InputProps> = ({
             </IconButton>
           </InputAdornment>
         ),
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton aria-label="clear input" onClick={handleClear}>
-              {inputValue && <ClearIcon fontSize="small" />}
-            </IconButton>
-          </InputAdornment>
-        ),
         inputComponent: NumericFormatCustom as any,
+        ...InputProps,
       }}
-      {...rest}
+      {...restProps}
     />
   );
 };
 
-export default CurrencyInput;
+export default withClearButton(CurrencyInput);

@@ -51,12 +51,13 @@ const StyledPasswordInputWrapper = styled.div<InputProps>`
 
 const StyledInput: React.FC<InputProps> = ({
   variant = 'standard',
+  InputProps,
   ...props
 }) => {
   const theme = useTheme();
   return (
     <StyledPasswordInputWrapper theme={theme} {...props}>
-      <TextField variant={variant} {...props} />
+      <TextField variant={variant} {...props} InputProps={InputProps} />
     </StyledPasswordInputWrapper>
   );
 };
