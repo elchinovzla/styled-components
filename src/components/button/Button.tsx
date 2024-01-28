@@ -9,7 +9,7 @@ export type ButtonType = 'primary' | 'secondary';
 export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
   label: string;
   style?: Style;
-  type: ButtonType;
+  styleType?: ButtonType;
   isLoading?: boolean;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -30,13 +30,13 @@ const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
 const Button: React.FC<ButtonProps> = ({
   label,
   style,
-  type,
+  styleType = 'primary',
   isLoading,
   disabled,
   onClick,
   ...rest
 }) => {
-  const buttonProps = buttonPropsMap[type];
+  const buttonProps = buttonPropsMap[styleType];
   return (
     <StyledButton
       onClick={onClick}

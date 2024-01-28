@@ -25,7 +25,7 @@ export const PrimaryButton: Story = {
     label: 'Login',
     style: {},
     onClick: () => alert('button clicked'),
-    type: 'primary',
+    styleType: 'primary',
   },
 };
 
@@ -34,7 +34,7 @@ export const SecondaryButton: Story = {
     label: 'cancel',
     style: {},
     onClick: () => alert('button clicked'),
-    type: 'secondary',
+    styleType: 'secondary',
   },
 };
 
@@ -43,7 +43,7 @@ export const ButtonWithEndIcon: Story = {
     label: 'Login',
     style: {},
     onClick: () => alert('button clicked'),
-    type: 'primary',
+    styleType: 'primary',
     endIcon: <LoginIcon />,
   },
 };
@@ -53,7 +53,7 @@ export const ButtonWithStartIcon: Story = {
     label: 'cancel',
     style: {},
     onClick: () => alert('button clicked'),
-    type: 'secondary',
+    styleType: 'secondary',
     startIcon: <CloseIcon />,
   },
 };
