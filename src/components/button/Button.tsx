@@ -6,7 +6,7 @@ import StyledButton from './StyledButton';
 
 export type ButtonType = 'primary' | 'secondary';
 
-interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
+export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
   label: string;
   style?: Style;
   type: ButtonType;

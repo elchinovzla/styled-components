@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LoginIcon from '@mui/icons-material/Login';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import Button from '../components/button/Button';
+import Button from '../../components/button/Button';
 
 const meta = {
   title: 'Example/Button',
