@@ -1,4 +1,5 @@
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import React, { useState } from 'react';
@@ -46,6 +47,10 @@ const CurrencyInput: React.FC<InputProps> = ({
     setInputValue(event.target.value);
   };
 
+  const handleClear = () => {
+    setInputValue('');
+  };
+
   return (
     <StyledInput
       error={error ?? false}
@@ -60,6 +65,13 @@ const CurrencyInput: React.FC<InputProps> = ({
           <InputAdornment position="start">
             <IconButton aria-label="currency">
               <AttachMoneyIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton aria-label="clear input" onClick={handleClear}>
+              {inputValue && <ClearIcon fontSize="small" />}
             </IconButton>
           </InputAdornment>
         ),

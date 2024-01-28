@@ -1,3 +1,4 @@
+import ClearIcon from '@mui/icons-material/Clear';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +14,7 @@ const PasswordInput: React.FC<InputProps> = ({
   ...rest
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [value, setValue] = useState('');
 
   const handleClickShowPassword = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -24,14 +26,29 @@ const PasswordInput: React.FC<InputProps> = ({
     event.preventDefault();
   };
 
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const handleClear = () => {
+    setValue('');
+  };
+
   return (
     <StyledInput
       error={error ?? false}
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
       label={label}
+      value={value}
+      onChange={handleOnChange}
       InputProps={{
-        endAdornment: (
+        endAdornment: [
+          <InputAdornment position="end">
+            <IconButton aria-label="clear input" onClick={handleClear}>
+              {value && <ClearIcon fontSize="small" />}
+            </IconButton>
+          </InputAdornment>,
           <InputAdornment position="end">
             <IconButton
               aria-label="toggle password visibility"
@@ -40,8 +57,8 @@ const PasswordInput: React.FC<InputProps> = ({
             >
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
-          </InputAdornment>
-        ),
+          </InputAdornment>,
+        ],
       }}
       {...rest}
     />
