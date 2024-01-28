@@ -39,6 +39,7 @@ const CurrencyInput: React.FC<InputProps> = ({
   label,
   error,
   helperText,
+  onChange,
   ...rest
 }) => {
   const { InputProps, ...restProps } = rest;
@@ -50,6 +51,7 @@ const CurrencyInput: React.FC<InputProps> = ({
       type="text"
       inputMode="numeric"
       label={label}
+      onChange={onChange}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

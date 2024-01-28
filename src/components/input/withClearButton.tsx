@@ -6,16 +6,29 @@ import { InputProps } from './CommonType';
 
 const withClearButton = (WrappedComponent: React.FC<InputProps>) => {
   const WithClearButton: React.FC<InputProps> = (props) => {
-    const { InputProps, ...rest } = props;
+    const { InputProps, onChange, ...rest } = props;
     const [inputValue, setInputValue] = useState('');
-    console.log(InputProps);
+
+    const existingOnChange = InputProps?.onChange;
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(event.target.value);
+
+      if (existingOnChange) {
+        existingOnChange(event);
+      }
     };
 
     const handleClear = () => {
       setInputValue('');
+
+      if (existingOnChange) {
+        existingOnChange({
+          target: {
+            value: '',
+          },
+        } as React.ChangeEvent<HTMLInputElement>);
+      }
     };
 
     const endAdornment = [

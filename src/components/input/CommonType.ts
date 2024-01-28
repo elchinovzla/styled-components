@@ -11,4 +11,5 @@ export interface InputProps
   > {
   label: string;
   variant?: 'filled' | 'outlined' | 'standard';
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }

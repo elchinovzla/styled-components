@@ -14,7 +14,7 @@ const PasswordInput: React.FC<InputProps> = ({
   ...rest
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { InputProps, ...restProps } = rest;
+  const { onChange, InputProps, ...restProps } = rest;
 
   const handleClickShowPassword = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -47,6 +47,7 @@ const PasswordInput: React.FC<InputProps> = ({
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
       label={label}
+      onChange={onChange}
       InputProps={{
         ...InputProps,
         endAdornment,

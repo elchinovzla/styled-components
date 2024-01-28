@@ -5,11 +5,13 @@ import { Style } from '../common/Type';
 import StyledButton from './StyledButton';
 
 export type ButtonType = 'primary' | 'secondary';
-export interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
+
+interface ButtonProps extends Omit<MuiButtonProps, 'type'> {
   label: string;
   style?: Style;
   type: ButtonType;
   isLoading?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
@@ -31,11 +33,13 @@ const Button: React.FC<ButtonProps> = ({
   type,
   isLoading,
   disabled,
+  onClick,
   ...rest
 }) => {
   const buttonProps = buttonPropsMap[type];
   return (
     <StyledButton
+      onClick={onClick}
       style={style}
       disabled={isLoading || disabled}
       {...buttonProps}
