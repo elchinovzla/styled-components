@@ -7,14 +7,8 @@ import { InputProps } from './CommonType';
 const StyledPasswordInputWrapper = styled.div<InputProps>`
   && {
     font-weight: 800;
-    width: 220px;
+    width: 300px;
     height: 55px;
-  }
-
-  & input[type='number']::-webkit-outer-spin-button,
-  & input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
   }
 
   & .MuiIconButton-root {
@@ -23,6 +17,8 @@ const StyledPasswordInputWrapper = styled.div<InputProps>`
 
   & .MuiInputBase-input {
     color: ${(props) => props.theme.palette.common.white};
+    padding-left: ${(props) =>
+      props.InputProps?.startAdornment ? '0' : '20px'};
   }
 
   & .MuiInput-underline {
@@ -56,7 +52,11 @@ const StyledInput: React.FC<InputProps> = ({
 }) => {
   const theme = useTheme();
   return (
-    <StyledPasswordInputWrapper theme={theme} {...props}>
+    <StyledPasswordInputWrapper
+      theme={theme}
+      InputProps={InputProps}
+      {...props}
+    >
       <TextField variant={variant} {...props} InputProps={InputProps} />
     </StyledPasswordInputWrapper>
   );
