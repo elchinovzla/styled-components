@@ -9,22 +9,28 @@ const withClearButton = (WrappedComponent: React.FC<InputProps>) => {
     const { InputProps, onChange, ...rest } = props;
     const [inputValue, setInputValue] = useState('');
 
-    const existingOnChange = InputProps?.onChange;
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(event.target.value);
 
-      if (existingOnChange) {
-        existingOnChange(event);
+      if (onChange) {
+        onChange({
+          ...event,
+          target: {
+            ...event.target,
+            name: props.name,
+            value: event.target.value,
+          },
+        } as React.ChangeEvent<HTMLInputElement>);
       }
     };
 
     const handleClear = () => {
       setInputValue('');
 
-      if (existingOnChange) {
-        existingOnChange({
+      if (onChange) {
+        onChange({
           target: {
+            name: props.name,
             value: '',
           },
         } as React.ChangeEvent<HTMLInputElement>);

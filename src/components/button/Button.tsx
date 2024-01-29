@@ -26,19 +26,19 @@ const buttonPropsMap: Record<ButtonType, MuiButtonProps> = {
   },
 };
 
-const Button: React.FC<ButtonProps> = ({
-  label,
-  style,
-  styleType = 'primary',
-  isLoading,
-  disabled,
-  // onClick,
-  ...rest
-}) => {
+const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    label,
+    style,
+    styleType = 'primary',
+    isLoading,
+    disabled,
+    ...rest
+  } = props;
+
   const buttonProps = buttonPropsMap[styleType];
   return (
     <StyledButton
-      // onClick={onClick}
       style={style}
       disabled={isLoading || disabled}
       {...buttonProps}

@@ -7,14 +7,9 @@ import { InputProps } from './CommonType';
 import StyledInput from './StyledInput';
 import withClearButton from './withClearButton';
 
-const PasswordInput: React.FC<InputProps> = ({
-  label,
-  error,
-  helperText,
-  ...rest
-}) => {
+const PasswordInput: React.FC<InputProps> = (props) => {
+  const { label, error, helperText, onChange, InputProps, ...rest } = props;
   const [showPassword, setShowPassword] = useState(false);
-  const { onChange, InputProps, ...restProps } = rest;
 
   const handleClickShowPassword = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -52,7 +47,7 @@ const PasswordInput: React.FC<InputProps> = ({
         ...InputProps,
         endAdornment,
       }}
-      {...restProps}
+      {...rest}
     />
   );
 };

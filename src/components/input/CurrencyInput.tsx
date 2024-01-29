@@ -35,14 +35,8 @@ const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
   }
 );
 
-const CurrencyInput: React.FC<InputProps> = ({
-  label,
-  error,
-  helperText,
-  onChange,
-  ...rest
-}) => {
-  const { InputProps, ...restProps } = rest;
+const CurrencyInput: React.FC<InputProps> = (props) => {
+  const { label, error, helperText, onChange, InputProps, ...rest } = props;
 
   return (
     <StyledInput
@@ -63,7 +57,7 @@ const CurrencyInput: React.FC<InputProps> = ({
         inputComponent: NumericFormatCustom as any,
         ...InputProps,
       }}
-      {...restProps}
+      {...rest}
     />
   );
 };
