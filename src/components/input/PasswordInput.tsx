@@ -8,7 +8,8 @@ import StyledInput from './StyledInput';
 import withClearButton from './withClearButton';
 
 const PasswordInput: React.FC<InputProps> = (props) => {
-  const { label, error, helperText, onChange, InputProps, ...rest } = props;
+  const { label, error, helperText, onChange, InputProps, style, ...rest } =
+    props;
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -42,6 +43,7 @@ const PasswordInput: React.FC<InputProps> = (props) => {
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
       label={label}
+      style={{ ...style, width: '280px' }}
       onChange={onChange}
       InputProps={{
         ...InputProps,

@@ -9,6 +9,11 @@ const StyledPasswordInputWrapper = styled.div<InputProps>`
     font-weight: 800;
     width: 300px;
     height: 55px;
+    & input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px
+        ${(props) => props.theme.palette.background.default} inset;
+      -webkit-text-fill-color: ${(props) => props.theme.palette.common.white};
+    }
   }
 
   & .MuiIconButton-root {

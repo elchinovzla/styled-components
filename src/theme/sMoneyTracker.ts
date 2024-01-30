@@ -20,10 +20,10 @@ const theme = createTheme({
       main: '#ffe400',
     },
     info: {
-      main: '#747474',
+      main: '#272727',
     },
     background: {
-      paper: '#272727',
+      paper: '#bbbbbb',
       default: '#272727',
     },
     action: {
