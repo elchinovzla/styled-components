@@ -1,3 +1,4 @@
+import LockIcon from '@mui/icons-material/Lock';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -43,9 +44,16 @@ const PasswordInput: React.FC<InputProps> = (props) => {
       helperText={error ? helperText : ''}
       type={showPassword ? 'text' : 'password'}
       label={label}
-      style={{ ...style, width: '280px' }}
       onChange={onChange}
+      placeholder="password"
       InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <IconButton aria-label="password">
+              <LockIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
         ...InputProps,
         endAdornment,
       }}

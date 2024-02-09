@@ -16,6 +16,7 @@ const EmailInput: React.FC<InputProps> = (props) => {
       type="email"
       label={label}
       onChange={onChange}
+      placeholder="email@domain.com"
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

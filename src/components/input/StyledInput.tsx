@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { InputProps } from './CommonType';
 
-const StyledPasswordInputWrapper = styled.div<InputProps>`
+const StyledInputWrapper = styled.div<InputProps>`
   && {
     font-weight: 800;
     width: 300px;
@@ -57,13 +57,9 @@ const StyledInput: React.FC<InputProps> = ({
 }) => {
   const theme = useTheme();
   return (
-    <StyledPasswordInputWrapper
-      theme={theme}
-      InputProps={InputProps}
-      {...props}
-    >
+    <StyledInputWrapper theme={theme} InputProps={InputProps} {...props}>
       <TextField variant={variant} {...props} InputProps={InputProps} />
-    </StyledPasswordInputWrapper>
+    </StyledInputWrapper>
   );
 };
 
